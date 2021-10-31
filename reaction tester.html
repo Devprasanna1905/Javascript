@@ -1,0 +1,106 @@
+<html>
+
+    <head>
+        
+        <title>Reaction Timer</title>
+		<style>
+		
+			body{
+				max-width:500px;
+				font-family:sans-serif;
+				background-color:#AD8B65;
+				margin:auto;
+			
+			
+			}
+			#red{
+				
+				float:left;
+				display:none;
+				position: relative;
+				
+			}
+			.bold{
+			
+				font-weight:bold;
+			
+			}
+
+		
+		</style>
+    
+    </head>
+
+    <body>
+		<p><h1>Test your Reactions!</h1></p>
+		<p>Click on the shapes as qucikly as you can </p>
+		<p class="bold">Your Time:<span id="time"></span></p>
+		<div id="red"></div>
+        <script>
+			var start=new Date().getTime();
+			
+			function getRandomColor() {
+			  var letters = '0123456789ABCDEF'.split('');
+			  var color = '#';
+			  for (var i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)];
+			  }
+			  return color;
+			}
+			
+			
+			
+			
+			function myFunction() {
+				var top=Math.random() *400;
+				var left=Math.random() *400;
+				var width=(Math.random() *200)+100;
+				var height=Math.random() *400;
+				if (Math.random()>0.5){
+				
+					document.getElementById("red").style.borderRadius="50%";
+				
+				}
+				else{
+				
+					document.getElementById("red").style.borderRadius="0%";
+				
+				
+				
+				}
+				document.getElementById("red").style.backgroundColor=getRandomColor();
+				
+				document.getElementById("red").style.top=top+"px";
+				document.getElementById("red").style.left=left+"px";
+				document.getElementById("red").style.display="block";
+				document.getElementById("red").style.height=height+"px";
+				document.getElementById("red").style.width=width+"px";
+				start=new Date().getTime();
+			}
+			
+			function appearafter() {
+			
+				setTimeout(myFunction,Math.random()*2000);
+			}
+			appearafter();
+			setTimeout(myFunction,Math.random()*2000);
+			document.getElementById("red").onclick=function(){
+				document.getElementById("red").style.display="none";
+				var end=new Date().getTime();
+				var timetaken=(end-start)/1000;
+				document.getElementById("time").innerHTML=timetaken+"s";
+				
+				appearafter();
+				
+				
+			}
+			
+		
+		
+		
+		
+		</script>
+        
+    </body>
+
+</html>
